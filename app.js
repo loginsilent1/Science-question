@@ -1,7 +1,18 @@
-// Example: change this to 'physicsQuestions' or 'englishQuestions' or 'biologyQuestions' from your question files
-import questions from './physics.js';
+// app.js
 
-// Shuffle the questions array
+let questions = [];
+let shuffledQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+// Elements
+const subjectSelectEl = document.getElementById('subject-select');
+const quizSection = document.getElementById('quiz');
+const questionEl  = document.getElementById('question');
+const optionsEl   = document.getElementById('options');
+const nextBtn     = document.getElementById('next');
+const resultEl    = document.getElementById('result');
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -10,62 +21,69 @@ function shuffleArray(array) {
   return array;
 }
 
-let shuffledQuestions = shuffleArray([...questions]);
+function startQuiz(subject) {
+  // pick the global array based on subject
+  if (subject === 'physics') questions = physicsQuestions;
+  if (subject === 'biology') questions = biologyQuestions;
+  if (subject === 'english') questions = englishQuestions;
 
-let currentQuestionIndex = 0;
-let score = 0;
+  shuffledQuestions = shuffleArray([...questions]);
+  currentQuestionIndex = 0;
+  score = 0;
 
-const questionContainer = document.getElementById('question');
-const optionsContainer = document.getElementById('options');
-const nextButton = document.getElementById('next');
-const resultContainer = document.getElementById('result');
+  subjectSelectEl.style.display = 'none';
+  quizSection.style.display = 'block';
+  showQuestion();
+}
 
 function showQuestion() {
-  const currentQuestion = shuffledQuestions[currentQuestionIndex];
-  questionContainer.innerHTML = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
-
-  optionsContainer.innerHTML = '';
-  currentQuestion.options.forEach((option, index) => {
-    const button = document.createElement('button');
-    button.innerText = option;
-    button.classList.add('option-btn');
-    button.onclick = () => checkAnswer(button, currentQuestion.answer);
-    optionsContainer.appendChild(button);
+  const q = shuffledQuestions[currentQuestionIndex];
+  questionEl.textContent = `${currentQuestionIndex + 1}. ${q.question}`;
+  optionsEl.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.textContent = opt;
+    btn.className = 'option-btn';
+    btn.onclick = () => checkAnswer(btn, q.answer);
+    optionsEl.appendChild(btn);
   });
+  nextBtn.style.display = 'none';
+  resultEl.textContent = '';
 }
 
-function checkAnswer(selectedButton, correctAnswer) {
-  const buttons = document.querySelectorAll('.option-btn');
-  buttons.forEach(button => button.disabled = true);
-
-  if (selectedButton.innerText === correctAnswer) {
-    selectedButton.classList.add('correct');
+function checkAnswer(selectedBtn, correctAnswer) {
+  // disable all
+  document.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
+  if (selectedBtn.textContent === correctAnswer) {
+    selectedBtn.classList.add('correct');
     score++;
   } else {
-    selectedButton.classList.add('wrong');
-    buttons.forEach(button => {
-      if (button.innerText === correctAnswer) {
-        button.classList.add('correct');
-      }
+    selectedBtn.classList.add('wrong');
+    // highlight correct
+    document.querySelectorAll('.option-btn').forEach(b=>{
+      if (b.textContent === correctAnswer) b.classList.add('correct');
     });
   }
-  nextButton.style.display = 'block';
+  nextBtn.style.display = 'block';
 }
 
-nextButton.addEventListener('click', () => {
+nextBtn.addEventListener('click', () => {
   currentQuestionIndex++;
   if (currentQuestionIndex < shuffledQuestions.length) {
     showQuestion();
-    nextButton.style.display = 'none';
   } else {
     showResult();
   }
 });
 
 function showResult() {
-  questionContainer.innerHTML = `Quiz Completed!`;
-  optionsContainer.innerHTML = `Your score is ${score} out of ${shuffledQuestions.length}.`;
-  nextButton.style.display = 'none';
+  questionEl.textContent = 'Quiz Complete!';
+  optionsEl.innerHTML = '';
+  resultEl.innerHTML = `Your score: ${score} / ${shuffledQuestions.length}`;
+  nextBtn.style.display = 'none';
 }
 
-showQuestion();
+// Wire up the subject buttons
+document.getElementById('btn-physics').addEventListener('click', ()=> startQuiz('physics'));
+document.getElementById('btn-biology').addEventListener('click', ()=> startQuiz('biology'));
+document.getElementById('btn-english').addEventListener('click', ()=> startQuiz('english'));
