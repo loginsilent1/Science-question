@@ -1,6 +1,6 @@
 // english.js — contains all 30 English MCQs in a randomized structure
 
-let englishQuestions = [
+const englishQuestions = [
   {
     question: "Which of the following sentence is incorrect?",
     options: [
@@ -188,13 +188,4 @@ let englishQuestions = [
   }
 ];
 
-// Function to randomize question order
-function shuffleQuestions() {
-  for (let i = englishQuestions.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [englishQuestions[i], englishQuestions[j]] = [englishQuestions[j], englishQuestions[i]];
-  }
-}
 
-// Call shuffle when quiz starts
-shuffleQuestions();
