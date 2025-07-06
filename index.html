@@ -10,9 +10,9 @@
     <h1>Multiple Choice Quiz</h1>
     
     <div id="subject-select">
-      <button onclick="startQuiz('physics')">Physics</button>
-      <button onclick="startQuiz('biology')">Biology</button>
-      <button onclick="startQuiz('english')">English</button>
+      <button id="btn-physics">Physics</button>
+      <button id="btn-biology">Biology</button>
+      <button id="btn-english">English</button>
     </div>
 
     <div id="quiz" style="display: none;">
@@ -23,95 +23,11 @@
     </div>
   </div>
 
-  <script type="module">
-    import { physicsQuestions } from './physics.js';
-    import { biologyQuestions } from './biology.js';
-    import { englishQuestions } from './english.js';
-
-    let questions = [];
-    let shuffledQuestions = [];
-    let currentQuestionIndex = 0;
-    let score = 0;
-
-    const questionContainer = document.getElementById('question');
-    const optionsContainer = document.getElementById('options');
-    const nextButton = document.getElementById('next');
-    const resultContainer = document.getElementById('result');
-    const quizSection = document.getElementById('quiz');
-    const subjectSelect = document.getElementById('subject-select');
-
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    window.startQuiz = function(subject) {
-      if (subject === 'physics') questions = physicsQuestions;
-      if (subject === 'biology') questions = biologyQuestions;
-      if (subject === 'english') questions = englishQuestions;
-
-      shuffledQuestions = shuffleArray([...questions]);
-      currentQuestionIndex = 0;
-      score = 0;
-
-      subjectSelect.style.display = 'none';
-      quizSection.style.display = 'block';
-      showQuestion();
-    };
-
-    function showQuestion() {
-      const currentQuestion = shuffledQuestions[currentQuestionIndex];
-      questionContainer.innerHTML = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
-
-      optionsContainer.innerHTML = '';
-      currentQuestion.options.forEach(option => {
-        const button = document.createElement('button');
-        button.innerText = option;
-        button.classList.add('option-btn');
-        button.onclick = () => checkAnswer(button, currentQuestion.answer);
-        optionsContainer.appendChild(button);
-      });
-
-      nextButton.style.display = 'none';
-      resultContainer.innerHTML = '';
-    }
-
-    function checkAnswer(selectedButton, correctAnswer) {
-      const buttons = document.querySelectorAll('.option-btn');
-      buttons.forEach(button => button.disabled = true);
-
-      if (selectedButton.innerText === correctAnswer) {
-        selectedButton.classList.add('correct');
-        score++;
-      } else {
-        selectedButton.classList.add('wrong');
-        buttons.forEach(button => {
-          if (button.innerText === correctAnswer) {
-            button.classList.add('correct');
-          }
-        });
-      }
-      nextButton.style.display = 'block';
-    }
-
-    nextButton.addEventListener('click', () => {
-      currentQuestionIndex++;
-      if (currentQuestionIndex < shuffledQuestions.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    });
-
-    function showResult() {
-      questionContainer.innerHTML = `Quiz Completed!`;
-      optionsContainer.innerHTML = '';
-      resultContainer.innerHTML = `Your score is ${score} out of ${shuffledQuestions.length}.`;
-      nextButton.style.display = 'none';
-    }
-  </script>
+  <!-- Load question data files first -->
+  <script src="physics.js"></script>
+  <script src="biology.js"></script>
+  <script src="english.js"></script>
+  <!-- Then load the app logic -->
+  <script src="app.js"></script>
 </body>
-  </html>
+</html>
