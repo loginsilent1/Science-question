@@ -700,5 +700,3 @@ export const physicsQuestions = [
     answer: "γ-ray"
   }
 ];
-
-export default physicsQuestions;
