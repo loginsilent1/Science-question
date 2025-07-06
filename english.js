@@ -7,9 +7,9 @@ const englishQuestions = [
       "I am passing my exam",
       "I have passed my exam",
       "I had passed my exam",
-      "Had pass my exam"
+      "I had pass my exam"
     ],
-    answer: "Had pass my exam"
+    answer: "I had pass my exam"
   },
   {
     question: "Which alphabet in the word 'receipt' is silent?",
@@ -167,7 +167,7 @@ const englishQuestions = [
     answer: "Stopping"
   },
   {
-    question: "He is poor, he always wears expensive clothes.",
+    question: ".........He is poor, he always wears expensive clothes.",
     options: ["Yet", "However", "Although", "If"],
     answer: "Yet"
   },
