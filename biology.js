@@ -148,5 +148,3 @@ const biologyQuestions = [
   }
 ];
 
-// Randomize questions order
-biologyQuestions.sort(() => Math.random() - 0.5);
