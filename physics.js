@@ -1,4 +1,4 @@
-const physicsQuestions = [
+export const physicsQuestions = [
   {
     question: "Work and energy are measured in Joule. The fundamental units involved in Joule are",
     options: [
