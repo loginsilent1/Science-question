@@ -2,7 +2,7 @@ const physicsQuestions = [
   {
     question: "Work and energy are measured in Joule. The fundamental units involved in Joule are",
     options: [
-      "(kg × m × m)/(s × s)",
+      "(kg × m )/(s)",
       "(kg × m)/(s × s × s)",
       "kg/(m × m × m)",
       "(kg × m²)/(s²)"
