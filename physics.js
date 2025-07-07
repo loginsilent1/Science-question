@@ -668,7 +668,7 @@ const physicsQuestions = [
       "Center",
       "A & B both"
     ],
-    answer: "A & B both"
+    answer: "Sides"
   },
   {
     question: "Time period of simple pendulum:",
