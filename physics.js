@@ -37,7 +37,7 @@ const physicsQuestions = [
       "High pitch",
       "Low pitch"
     ],
-    answer: "Shorter wavelength"
+    answer: "High pitch"
   },
   {
     question: "When light travels from denser medium to rarer medium, it does not obey laws of refraction, if",
@@ -57,7 +57,7 @@ const physicsQuestions = [
       "Red",
       "Yellow"
     ],
-    answer: "Red"
+    answer: "Violet"
   },
   {
     question: "The expression to calculate resistance of a conductor is",
@@ -87,7 +87,7 @@ const physicsQuestions = [
       "3 kg",
       "0 kg"
     ],
-    answer: "1 kg"
+    answer: "6 kg"
   },
   {
     question: "The mirrors used in vehicles to view behind are",
@@ -170,24 +170,14 @@ const physicsQuestions = [
     answer: "1.6 m/s²"
   },
   {
-    question: "Correct relation is",
-    options: [
-      "a.",
-      "b.",
-      "c.",
-      "d."
-    ],
-    answer: "a."
-  },
-  {
     question: "Value of universal gravitational constant G is",
     options: [
-      "a.",
+      "6.674*10............",
       "9.8 m/s²",
       "760 mmHg",
       "10 m/s²"
     ],
-    answer: "a."
+    answer: "6.674*10............"
   },
   {
     question: "Which is not a unit of pressure?",
@@ -397,7 +387,7 @@ const physicsQuestions = [
       "Wavelength",
       "Mass"
     ],
-    answer: "Distance"
+    answer: "Displacement"
   },
   {
     question: "Physical quantity that depends on inertia",
@@ -417,7 +407,7 @@ const physicsQuestions = [
       "Scissors",
       "Nut-cracker"
     ],
-    answer: "Nut-cracker"
+    answer: "Screwdriver"
   },
   {
     question: "Mechanical advantage is ratio of",
@@ -427,7 +417,7 @@ const physicsQuestions = [
       "Two distances",
       "Two loads"
     ],
-    answer: "Two loads"
+    answer: "Two forces"
   },
   {
     question: "Turning effect of force is called",
@@ -447,7 +437,7 @@ const physicsQuestions = [
       "E/E_d = L/L_d",
       "E/L_d = E_d/L"
     ],
-    answer: "E × L_d = L × E_d"
+    answer: "E × E_d = L × L_d"
   },
   {
     question: "100% efficiency is found in",
@@ -578,6 +568,7 @@ const physicsQuestions = [
       "None"
     ],
     answer: "Refraction"
+    
   },
   {
     question: "Colour with highest speed in medium",
